@@ -16,7 +16,7 @@
         <module>collagid-es</module>
         <module>collagid-ot</module>
         <module>collagid-boot-starter</module>
-        <module>examples</module>
+        <module>examples/ws</module>
     </modules>
 
     <properties>
