@@ -1,0 +1,21 @@
+{
+  "name": "Collagrid",
+  "version": "1.0.0",
+  "description": "The best Database Grid component in the world, supporting React, Vue, and Angular. It also provides backend services.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "engines": {
+    "node": "16.15.0",
+    "pnpm": "^8"
+  },
+  "devDependencies": {
+    "nx": "16.10.0",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.1",
+    "cross-env": "^7.0.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
