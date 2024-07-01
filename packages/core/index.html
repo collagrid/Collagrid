@@ -1,0 +1,23 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Component Library Demo</title>
+    <link rel="stylesheet" href="/src/styles.css"> <!-- 如果有样式文件的话 -->
+</head>
+<body>
+<div id="app"></div>
+
+<script type="module">
+    import { Button } from './src/main.ts'; // 导入你的组件
+
+    // 在这里使用你的组件进行演示
+    const myButton = new Button('Click me');
+    const buttonElement = myButton.render();
+
+    document.getElementById('app').appendChild(buttonElement);
+</script>
+</body>
+</html>
