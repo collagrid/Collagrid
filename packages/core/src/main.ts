@@ -1,19 +1,52 @@
-// main.ts
+import {ClientSideRowModelModule, createGrid, GridApi, GridOptions, ModuleRegistry} from "ag-grid-community";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
+// Row Data Interface
+interface IRow {
+    make: string;
+    model: string;
+    price: number;
+    electric: boolean;
+}
 
-// 定义一个简单的 Button 组件类
-class Button {
-    private text: string;
+// CollaGrid Class
+class CollaGrid {
+    private gridApi: GridApi | undefined;
+    private gridOptions: GridOptions<IRow>;
 
-    constructor(text: string) {
-        this.text = text;
+    constructor(private domId: string) {
+        this.gridOptions = {
+            rowData: [
+                { make: "Tesla", model: "Model Y", price: 64950, electric: true },
+                { make: "Ford", model: "F-Series", price: 33850, electric: false },
+                { make: "Toyota", model: "Corolla", price: 29600, electric: false },
+                { make: "Mercedes", model: "EQA", price: 48890, electric: true },
+                { make: "Fiat", model: "500", price: 15774, electric: false },
+                { make: "Nissan", model: "Juke", price: 20675, electric: false },
+            ],
+            columnDefs: [
+                { field: "make" },
+                { field: "model" },
+                { field: "price" },
+                { field: "electric" },
+            ],
+            defaultColDef: {
+                flex: 1,
+            },
+        };
     }
 
-    render(): HTMLElement {
-        const button = document.createElement('button');
-        button.textContent = this.text;
-        return button;
+    // Initialize the grid
+    initializeGrid() {
+        // Register modules
+        ModuleRegistry.registerModules([ClientSideRowModelModule]);
+
+        // Create Grid
+        this.gridApi = createGrid(
+            document.querySelector<HTMLElement>(`#${this.domId}`)!,
+            this.gridOptions
+        );
     }
 }
 
-// 导出组件库的主要接口
-export { Button };
+export default CollaGrid;
