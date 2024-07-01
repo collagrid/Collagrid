@@ -49,4 +49,4 @@ class CollaGrid {
     }
 }
 
-export default CollaGrid;
+export {CollaGrid};

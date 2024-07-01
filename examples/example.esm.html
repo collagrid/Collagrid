@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example</title>
+    <link rel="stylesheet" href="../packages/core/dist/style.css">
+</head>
+<body>
+<div id="app" style="width: 100%;height: 400px" class="ag-theme-quartz-dark"></div>
+<script type="module">
+    import { CollaGrid } from '../packages/core/dist/core.mjs';
+    const myCollaGrid = new CollaGrid('app');
+
+    // 初始化 Grid
+    myCollaGrid.initializeGrid();
+</script>
+</body>
+</html>
