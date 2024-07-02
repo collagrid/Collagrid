@@ -1,6 +1,6 @@
 {
   "name": "colla-grid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The best Database Grid component in the world, supporting React, Vue, and Angular. It also provides backend services.",
   "scripts": {
     "commit": "cz",
