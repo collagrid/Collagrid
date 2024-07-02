@@ -44,4 +44,4 @@ server2:
 	pnpm run start:room-server
 
 commit:
-	pnpm run commit
+	git add . && pnpm run commit
