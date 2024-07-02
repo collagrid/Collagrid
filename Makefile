@@ -43,3 +43,5 @@ server2:
 	source scripts/export-env.sh $$DEVENV_FILE;\
 	pnpm run start:room-server
 
+commit:
+	pnpm run commit

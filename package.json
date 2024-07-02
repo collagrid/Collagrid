@@ -1,10 +1,10 @@
 {
   "name": "colla-grid",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "The best Database Grid component in the world, supporting React, Vue, and Angular. It also provides backend services.",
   "scripts": {
     "commit": "cz",
-    "changeLog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release": "commit-and-tag-version",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "engines": {
@@ -12,6 +12,7 @@
     "pnpm": "^8"
   },
   "devDependencies": {
+    "commit-and-tag-version": "^12.4.1",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "nx": "16.10.0",
