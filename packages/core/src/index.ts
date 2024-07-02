@@ -9,16 +9,16 @@ interface IRow {
     electric: boolean;
 }
 
-export interface Option{
+interface CollaGridOption{
 
 }
 
 // CollaGrid Class
-export default class CollaGrid {
+class CollaGrid {
     private gridApi: GridApi | undefined;
     private gridOptions: GridOptions<IRow>;
 
-    constructor(option: Option) {
+    constructor(option: CollaGridOption) {
         this.gridOptions = {
             rowData: [
                 {make: "Tesla", model: "Model Y", price: 64950, electric: true},
@@ -53,6 +53,10 @@ export default class CollaGrid {
     }
 }
 
-export const createCollaGrid = (option: Option) => {
+const createCollaGrid = (option: CollaGridOption) => {
     return new CollaGrid(option);
 }
+
+export {createCollaGrid, CollaGrid};
+export type { CollaGridOption };
+

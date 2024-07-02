@@ -2,12 +2,33 @@
   "name": "core",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/colla-grid.umd.js",
+  "module": "./dist/colla-grid.es.js",
+  "types": "./dist/types/colla-grid.d.ts",
+  "style": "./dist/colla-grid.css",
+  "files": [
+    "dist",
+    "static"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/colla-grid.es.js",
+      "require": "./dist/colla-grid.umd.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./dist/colla-grid.css": {
+      "import": "./dist/colla-grid.css",
+      "require": "./dist/colla-grid.css"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "preview": "DEBUG=start-server-and-test && vite preview",
+    "preview:umd": "npm run build && npm run copy-umd && npm run serve",
+    "preview:esm": "npm run build && npm run copy-esm && npm run serve",
+    "copy-umd": "node ./script/copy-files.js ./examples/index.umd.html ./dist/index.html",
+    "copy-esm": "node ./script/copy-files.js ./examples/index.esm.html ./dist/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
