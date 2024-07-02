@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import * as path from 'path';
 
 export default defineConfig({
     // 在这里配置你的 Vite 项目
@@ -15,18 +16,31 @@ export default defineConfig({
         }),
     ],
     build: {
-        lib: {
-            entry: './src/main.ts',
-            name: 'collagrid', // 你的库的名称，用于全局访问
-        },
-        terserOptions: {
-            toplevel: true, // 保留顶级作用域符号不混淆
-        },
         rollupOptions: {
-            // 确保输出文件格式为 'es'，以便可以在浏览器中直接使用
-            output: {
-                format: 'es',
+            input: {
+                library: path.resolve(__dirname, 'src/index.ts'),
+                main: path.resolve(__dirname, 'src/main.ts')
             },
-        },
-    },
+            output: {
+                dir: 'dist',
+                format: 'es',
+                entryFileNames: '[name].js',
+            }
+        }
+    }
+    // build: {
+    //     lib: {
+    //         entry: './src/main.ts',
+    //         name: 'collagrid', // 你的库的名称，用于全局访问
+    //     },
+    //     terserOptions: {
+    //         toplevel: true, // 保留顶级作用域符号不混淆
+    //     },
+    //     rollupOptions: {
+    //         // 确保输出文件格式为 'es'，以便可以在浏览器中直接使用
+    //         output: {
+    //             format: 'es',
+    //         },
+    //     },
+    // },
 });

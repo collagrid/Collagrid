@@ -7,22 +7,14 @@
     <title>CollaGrid Demo</title>
     <style>
         /* 可选：自定义样式 */
-        #myGrid {
+        #app {
             width: 100%;
             height: 400px; /* 设置 Grid 的高度 */
         }
     </style>
 </head>
 <body>
-<div id="myGrid" class="ag-theme-quartz-dark"></div>
-
-<script type="module">
-    import CollaGrid from "./src/main";
-
-    const myCollaGrid = new CollaGrid('myGrid');
-
-    // 初始化 Grid
-    myCollaGrid.initializeGrid();
-</script>
+<div id="app" class="ag-theme-quartz-dark"></div>
+<script type="module" src="/src/main.ts"></script>
 </body>
 </html>
