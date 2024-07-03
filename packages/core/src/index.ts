@@ -44,7 +44,7 @@ class CollaGrid {
     mount(domId: string) {
         // Register modules
         ModuleRegistry.registerModules([ClientSideRowModelModule]);
-
+        console.log('xxmsms');
         // Create Grid
         this.gridApi = createGrid(
             document.querySelector<HTMLElement>(`${domId}`)!,

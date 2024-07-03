@@ -3,3 +3,5 @@
 logs/
 /packages/core/dist/
 /packages/**/node_modules/
+.vscode/
+.DS_Store

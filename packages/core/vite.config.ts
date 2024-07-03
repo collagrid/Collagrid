@@ -21,7 +21,7 @@ export default defineConfig({
                 },
             },
         },
-        sourcemap: false,
+        sourcemap: true,
         lib: {
             entry: path.resolve(__dirname, "src/index.ts"),
             name: "CollaGrid",
