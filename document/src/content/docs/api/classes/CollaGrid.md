@@ -21,7 +21,7 @@ title: "CollaGrid"
 
 #### Defined in
 
-[index.ts:21](https://github.com/collagrid/Collagrid/blob/881d98a2b5a42c867120a769cc66096289040bff/packages/core/src/index.ts#L21)
+[index.ts:21](https://github.com/collagrid/colla-grid/blob/445ae7f5e8ef76df6c1a0b01fcb75f879448676d/packages/core/src/index.ts#L21)
 
 ## Methods
 
@@ -39,4 +39,4 @@ title: "CollaGrid"
 
 #### Defined in
 
-[index.ts:44](https://github.com/collagrid/Collagrid/blob/881d98a2b5a42c867120a769cc66096289040bff/packages/core/src/index.ts#L44)
+[index.ts:44](https://github.com/collagrid/colla-grid/blob/445ae7f5e8ef76df6c1a0b01fcb75f879448676d/packages/core/src/index.ts#L44)

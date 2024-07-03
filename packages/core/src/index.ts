@@ -57,6 +57,21 @@ const createCollaGrid = (option: CollaGridOption) => {
     return new CollaGrid(option);
 }
 
-export {createCollaGrid, CollaGrid};
+/**
+ * Adds two numbers together.
+ * @param {number} a - The first number.
+ * @param {number} b - The second number.
+ * @returns {number} The sum of the two numbers.
+ * @example
+ * ```typescript
+ * const result = add(2, 3);
+ * console.log(result); // 5
+ * ```
+ */
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+export {createCollaGrid, CollaGrid, add};
 export type { CollaGridOption };
 

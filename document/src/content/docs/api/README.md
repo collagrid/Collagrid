@@ -15,4 +15,5 @@ title: "core"
 
 ## Functions
 
+- [add](/api/functions/add/)
 - [createCollaGrid](/api/functions/createcollagrid/)

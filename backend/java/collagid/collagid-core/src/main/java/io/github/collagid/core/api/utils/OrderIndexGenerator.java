@@ -6,6 +6,29 @@ import java.math.BigDecimal;
 public class OrderIndexGenerator {
 
     /**
+     * This is an example method.
+     *
+     * <p>Here is an example of how to use this method:</p>
+     *
+     * <pre>
+     * {@code
+     * // Create a new instance of the class
+     * MyClass obj = new MyClass();
+     *
+     * // Call the example method
+     * obj.exampleMethod("Hello, world!");
+     * }
+     * </pre>
+     *
+     * @param message The message to display.
+     */
+    public void exampleMethod(String message) {
+        System.out.println(message);
+    }
+
+
+
+    /**
      * Generates a new sort index based on the previous index, next index, and default expansion scale.
      * If both prevIndex and nextIndex are null, returns a default minimum index.
      *
