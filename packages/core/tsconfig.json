@@ -4,6 +4,7 @@
     "useDefineForClassFields": true,
     "lib": ["dom", "esnext"],
     "skipLibCheck": true,
+    "sourceMap": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
