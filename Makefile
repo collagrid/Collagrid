@@ -17,6 +17,9 @@ endif
 docs:
 	pnpm run docs
 
+lint:
+	cd packages/core && pnpm run lint
+
 commit:
 	git add . && pnpm run commit
 

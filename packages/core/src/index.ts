@@ -19,6 +19,7 @@ class CollaGrid {
     private gridOptions: GridOptions<IRow>;
 
     constructor(option: CollaGridOption) {
+        console.log('option is', option);
         this.gridOptions = {
             rowData: [
                 {make: "Tesla", model: "Model Y", price: 64950, electric: true},

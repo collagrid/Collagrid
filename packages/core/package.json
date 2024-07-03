@@ -25,6 +25,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
+    "lint": "eslint ./src",
     "preview:umd": "npm run build && npm run copy-umd && npm run serve",
     "preview:esm": "npm run build && npm run copy-esm && npm run serve",
     "copy-umd": "node ./script/copy-files.js ./examples/index.umd.html ./dist/index.html",
@@ -40,6 +41,10 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
+    "@eslint/js": "^9.6.0",
+    "eslint": "9.x",
+    "typescript-eslint": "^7.15.0",
+    "globals": "^15.8.0",
     "typescript": "^5.5.3",
     "vite": "^5.3.2",
     "vite-plugin-dts": "^3.9.1"

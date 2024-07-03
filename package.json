@@ -7,7 +7,8 @@
     "release": "commit-and-tag-version",
     "docs": "cd document && pnpm run dev",
     "dev": "cd packages/core && pnpm run dev",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "prepare": "husky"
   },
   "engines": {
     "node": "16.15.0",
@@ -17,6 +18,11 @@
     "commit-and-tag-version": "^12.4.1",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "@eslint/js": "^9.6.0",
+    "eslint": "9.x",
+    "typescript-eslint": "^7.15.0",
     "nx": "16.10.0",
     "rimraf": "^5.0.7",
     "ts-node": "^10.9.1",
@@ -27,6 +33,9 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "src/**/*.ts": "eslint --fix"
   },
   "keywords": [],
   "author": "",
