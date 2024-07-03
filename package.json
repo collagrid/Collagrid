@@ -20,7 +20,8 @@
     "nx": "16.10.0",
     "rimraf": "^5.0.7",
     "ts-node": "^10.9.1",
-    "typedoc": "^0.26.3"
+    "typedoc": "^0.26.3",
+    "yml-to-model": "^1.0.0"
   },
   "config": {
     "commitizen": {
