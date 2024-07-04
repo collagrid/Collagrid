@@ -69,15 +69,6 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                    <docletArtifact>
-                        <groupId>com.github.sirthias</groupId>
-                        <artifactId>jax-doclet</artifactId>
-                        <version>1.0</version>
-                    </docletArtifact>
-                    <additionalJavadocOptions>
-                        <additionalJavadocOption>-locale</additionalJavadocOption>
-                        <additionalJavadocOption>zh_CN</additionalJavadocOption>
-                    </additionalJavadocOptions>
                 </configuration>
             </plugin>
 
