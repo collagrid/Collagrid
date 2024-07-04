@@ -4,13 +4,21 @@ import io.github.collagid.core.api.event.CollaGridEventPublisher;
 import io.github.collagid.core.api.field.FieldDTO;
 import io.github.collagid.core.api.record.RecordDTO;
 import io.github.collagid.core.api.record.event.RecordCreatedEvent;
+import io.github.collagid.core.api.record.event.RecordQueryEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SnapshotDTO{
     private String dstId;
-    
+
+    private List<RecordDTO> recordDTOS;
+
     private SnapshotDTO(){}
+
+    public Integer recordCount(){
+        return this.recordDTOS.size();
+    }
 
     public static class SnapshotDTOLoader {
         private String dstId;
@@ -23,13 +31,19 @@ public class SnapshotDTO{
         public SnapshotDTO load(){
             System.out.println("load dstId: " + dstId);
             // load records
-            List<RecordDTO> reocrds = this.loadRecords();
-            return new SnapshotDTO();
+            SnapshotDTO snapshotDTO = new SnapshotDTO();
+            snapshotDTO.recordDTOS = this.loadRecords();
+            return snapshotDTO;
         }
 
         private List<RecordDTO> loadRecords() {
-            List<>
-            return null;
+            List<RecordDTO> recordDTOS = new ArrayList<>();
+            for (int i = 0; i < 100; i++) {
+                RecordDTO recordDTO = new RecordDTO();
+                recordDTOS.add(recordDTO);
+                CollaGridEventPublisher.publishEvent(new RecordQueryEvent(recordDTO));
+            }
+            return recordDTOS;
         }
     }
 

@@ -21,8 +21,7 @@ public class CollaGridEventPublisherTest {
 
     @BeforeEach
     public void setUp() {
-        SnapshotDTO snapshotDTO = new SnapshotDTO();
-        snapshotDTO.setDstId("a");
+        SnapshotDTO snapshotDTO = new SnapshotDTO.SnapshotDTOLoader().dstId("a").load();
         event = new RecordCreatedEvent(snapshotDTO, new RecordDTO());
     }
 
