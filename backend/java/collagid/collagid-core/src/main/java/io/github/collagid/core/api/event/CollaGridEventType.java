@@ -6,6 +6,7 @@ public enum CollaGridEventType {
     UPDATE_RECORD(false),
     DELETE_RECORD(false),
     QUERY_RECORD(false),
+    QUERY_RECORD_ASYNC(true),
     DATA_CREATE(true),
     DATA_UPDATE(true);
 

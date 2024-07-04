@@ -1,13 +1,12 @@
 package io.github.collagid.core.api.dtos;
 
-import io.github.collagid.core.api.dtos.builder.RecordDTOBuilder;
-import io.github.collagid.core.api.dtos.builder.SnapshotDTOBuilder;
 import io.github.collagid.core.api.event.CollaGridEventPublisher;
 import io.github.collagid.core.api.field.FieldDTO;
 import io.github.collagid.core.api.record.event.RecordCreatedEvent;
 import io.github.collagid.core.api.record.event.RecordQueryEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,42 +17,22 @@ public class SnapshotDTO{
     private Map<String, RecordDTO> recordMap;
     private int v;
 
-    public SnapshotDTO(SnapshotDTOBuilder snapshotDTOBuilder){
-        this.dstId = snapshotDTOBuilder.getDstId();
-        this.views = snapshotDTOBuilder.getViews();
-        this.fieldMap = snapshotDTOBuilder.getFieldMap();
-        this.recordMap = snapshotDTOBuilder.getRecordMap();
-        this.v = snapshotDTOBuilder.getV();
+    public SnapshotDTO() {
+        this.views = new ArrayList<>();
+        this.fieldMap = new HashMap<>();
+        this.recordMap = new HashMap<>();
     }
 
     public Integer recordCount(){
         return this.recordMap.size();
     }
 
-    public static class SnapshotDTOLoader {
-        private String dstId;
-        
-        public SnapshotDTOLoader dstId(String dstId){
-            this.dstId = dstId;
-            return this;
-        }
-
-        public SnapshotDTO load(){
-            // load records
-            SnapshotDTO snapshotDTO = new SnapshotDTOBuilder().setDstId(this.dstId).build();
-            snapshotDTO.addRecords(this.loadRecords());
-            return snapshotDTO;
-        }
-
-        private List<RecordDTO> loadRecords() {
-            List<RecordDTO> recordDTOS = new ArrayList<>();
-            RecordDTOBuilder recordDTOBuilder = new RecordDTOBuilder();
-            for (int i = 0; i < 100; i++) {
-                RecordDTO recordDTO = recordDTOBuilder.setId("" + i).build();
-                recordDTOS.add(recordDTO);
-                CollaGridEventPublisher.publishEvent(new RecordQueryEvent(recordDTO));
+    public void addView(ViewDTO viewDTO) {
+        this.views.add(viewDTO);
+        for (ChunkDTO chunk : viewDTO.getChunks()) {
+            for (RecordDTO record : chunk.getRecords()) {
+                recordMap.put(record.getId(), record);
             }
-            return recordDTOS;
         }
     }
 
@@ -67,6 +46,10 @@ public class SnapshotDTO{
         return dstId;
     }
 
+    public void addField(FieldDTO fieldDTO) {
+        this.fieldMap.put(fieldDTO.getId(), fieldDTO);
+    }
+
     public void setDstId(String dstId) {
         this.dstId = dstId;
     }
@@ -78,9 +61,16 @@ public class SnapshotDTO{
         this.recordMap.put(recordDTO.getId(), recordDTO);
         return recordDTO;
     }
-    
-    public FieldDTO addField(){
-        return null;
+
+    public Map<String, RecordDTO> getRecordMap() {
+        return recordMap;
     }
 
+    public Map<String, FieldDTO> getFieldMap() {
+        return fieldMap;
+    }
+
+    public List<ViewDTO> getViews() {
+        return views;
+    }
 }

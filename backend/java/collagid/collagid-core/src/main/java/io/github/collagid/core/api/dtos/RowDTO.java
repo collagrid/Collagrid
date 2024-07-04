@@ -1,14 +1,15 @@
 package io.github.collagid.core.api.dtos;
 
-import io.github.collagid.core.api.dtos.builder.RowDTOBuilder;
-
 public class RowDTO {
     private String id;
     private String chunkId;
 
-    public RowDTO(RowDTOBuilder rowDTOBuilder) {
-        this.id = rowDTOBuilder.getId();
-        this.chunkId = rowDTOBuilder.getChunkId();
+    public RowDTO(String id, String chunkId) {
+        this.id = id;
+        this.chunkId = chunkId;
+    }
+
+    public RowDTO() {
     }
 
     // Getters and Setters

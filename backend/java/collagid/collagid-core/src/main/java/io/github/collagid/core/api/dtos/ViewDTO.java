@@ -1,24 +1,19 @@
 package io.github.collagid.core.api.dtos;
 
-import io.github.collagid.core.api.dtos.builder.ViewDTOBuilder;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ViewDTO {
     private String viewId;
-    private List<RowDTO> rows;
     private List<ChunkDTO> chunks;
     private List<ColumnDTO> columns;
     private long ca;
     private long ua;
 
-    public ViewDTO(ViewDTOBuilder viewDTOBuilder) {
-        this.viewId = viewDTOBuilder.getViewId();
-        this.rows = viewDTOBuilder.getRows();
-        this.chunks = viewDTOBuilder.getChunks();
-        this.columns = viewDTOBuilder.getColumns();
-        this.ca = viewDTOBuilder.getCa();
-        this.ua = viewDTOBuilder.getUa();
+    public ViewDTO() {
+        this.chunks = new ArrayList<>();
+        this.columns = new ArrayList<>();
     }
 
     // Getters and Setters
@@ -30,20 +25,8 @@ public class ViewDTO {
         this.viewId = viewId;
     }
 
-    public List<RowDTO> getRows() {
-        return rows;
-    }
-
-    public void setRows(List<RowDTO> rows) {
-        this.rows = rows;
-    }
-
     public List<ChunkDTO> getChunks() {
         return chunks;
-    }
-
-    public void setChunks(List<ChunkDTO> chunks) {
-        this.chunks = chunks;
     }
 
     public List<ColumnDTO> getColumns() {
@@ -68,6 +51,10 @@ public class ViewDTO {
 
     public void setUa(long ua) {
         this.ua = ua;
+    }
+
+    public void addChunk(ChunkDTO chunkDTO) {
+        this.chunks.add(chunkDTO);
     }
 }
 
