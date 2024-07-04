@@ -1,5 +1,8 @@
 package io.github.collagid.core.api.event;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +13,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CollaGridEventPublisher {
+    private static final Logger logger = LoggerFactory.getLogger(CollaGridEventPublisher.class);
+
+    public static void main(String[] args) {
+        logger.info("gbhn");
+    }
     private static final Map<CollaGridEventType, List<CollaGridEventListener<?>>> listenersMap = new ConcurrentHashMap<>();
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -19,12 +27,12 @@ public class CollaGridEventPublisher {
             return;
         }
         listenersMap.computeIfAbsent(listener.getType(), k -> new ArrayList<>()).add(listener);
-        System.out.println("Registered listener for event type: " + listener.getType());
+        logger.info("Registered listener for event type: " + listener.getType());
     }
 
     public static <T extends CollaGridEvent> void publishEvent(T event) {
         if (event.getType().isAsync()) {
-            System.out.println("Event is async, publishEvent skipped: " + event.getType());
+            logger.info("Event is async, publishEvent skipped: " + event.getType());
             return;
         }
         List<CollaGridEventListener<?>> listeners = listenersMap.get(event.getType());
@@ -61,7 +69,7 @@ public class CollaGridEventPublisher {
         @SuppressWarnings("unchecked")
         CollaGridEventListener<T> listener = (CollaGridEventListener<T>) rawListener;
         listener.handle(event);
-        System.out.println("Notified listener for event type: " + event.getType());
+        logger.info("Notified listener for event type: " + event.getType());
     }
 }
 

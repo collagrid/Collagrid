@@ -38,6 +38,19 @@
             </plugins>
         </pluginManagement>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version> <!-- 版本根据需要选择 -->
+                <configuration>
+                    <excludes>
+                        <exclude>**/logback*.jar</exclude> <!-- 排除 logback 相关的 jar 包 -->
+                        <exclude>**/jansi*.jar</exclude> <!-- 排除 logback 相关的 jar 包 -->
+                        <!-- 可以根据需要排除其他的日志框架 -->
+                    </excludes>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
