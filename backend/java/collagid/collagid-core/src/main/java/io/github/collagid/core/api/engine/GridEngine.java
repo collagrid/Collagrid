@@ -1,6 +1,6 @@
 package io.github.collagid.core.api.engine;
 
-import io.github.collagid.core.api.SnapshotDTO;
+import io.github.collagid.core.api.dtos.SnapshotDTO;
 import io.github.collagid.core.api.event.CollaGridEvent;
 import io.github.collagid.core.api.event.CollaGridEventListener;
 import io.github.collagid.core.api.event.CollaGridEventPublisher;

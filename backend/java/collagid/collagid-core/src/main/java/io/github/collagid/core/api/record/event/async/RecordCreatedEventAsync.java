@@ -2,7 +2,7 @@ package io.github.collagid.core.api.record.event.async;
 
 import io.github.collagid.core.api.event.CollaGridEvent;
 import io.github.collagid.core.api.event.CollaGridEventType;
-import io.github.collagid.core.api.record.RecordDTO;
+import io.github.collagid.core.api.dtos.RecordDTO;
 
 public class RecordCreatedEventAsync implements CollaGridEvent {
     private RecordDTO newRecord;

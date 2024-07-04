@@ -2,7 +2,7 @@ package io.github.collagid.core.api.record.event;
 
 import io.github.collagid.core.api.event.CollaGridEvent;
 import io.github.collagid.core.api.event.CollaGridEventType;
-import io.github.collagid.core.api.record.RecordDTO;
+import io.github.collagid.core.api.dtos.RecordDTO;
 
 public class RecordQueryEvent implements CollaGridEvent {
     private RecordDTO dto;

@@ -1,7 +1,7 @@
 package io.github.collagid.core.api.event;
 
-import io.github.collagid.core.api.SnapshotDTO;
-import io.github.collagid.core.api.record.RecordDTO;
+import io.github.collagid.core.api.dtos.SnapshotDTO;
+import io.github.collagid.core.api.dtos.builder.RecordDTOBuilder;
 import io.github.collagid.core.api.record.event.RecordCreatedEvent;
 import io.github.collagid.core.api.record.event.async.RecordCreatedEventAsync;
 import io.github.collagid.core.api.record.listener.RecordCreated;
@@ -22,7 +22,8 @@ public class CollaGridEventPublisherTest {
     @BeforeEach
     public void setUp() {
         SnapshotDTO snapshotDTO = new SnapshotDTO.SnapshotDTOLoader().dstId("a").load();
-        event = new RecordCreatedEvent(snapshotDTO, new RecordDTO());
+        RecordDTOBuilder recordDTOBuilder = new RecordDTOBuilder();
+        event = new RecordCreatedEvent(snapshotDTO, recordDTOBuilder.build());
     }
 
     @Test

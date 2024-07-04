@@ -1,9 +1,9 @@
 package io.github.collagid.core.api.record.event;
 
-import io.github.collagid.core.api.SnapshotDTO;
+import io.github.collagid.core.api.dtos.SnapshotDTO;
 import io.github.collagid.core.api.event.CollaGridEvent;
 import io.github.collagid.core.api.event.CollaGridEventType;
-import io.github.collagid.core.api.record.RecordDTO;
+import io.github.collagid.core.api.dtos.RecordDTO;
 import io.github.collagid.core.api.record.event.async.RecordCreatedEventAsync;
 import io.github.collagid.core.api.utils.Asyncable;
 
