@@ -10,10 +10,15 @@ import java.util.stream.Collectors;
 public class RandomDataLoader extends DataLoader{
     private static final ThreadLocal<RandomLoaderOption> randomLoaderOption = ThreadLocal.withInitial(()->new RandomLoaderOptionBuilder().build());
 
+    public static RandomLoaderOption getRandomLoaderOption() {
+        return randomLoaderOption.get();
+    }
+
     @Override
     public SnapshotDTO loadSnapshot(String dstId) {
         RandomLoaderOption option = randomLoaderOption.get();
         option.context = new SnapshotDTO();
+        option.context.setDstId(dstId);
         loadFieldMap(dstId);
         for (int i = 0; i < option.viewCount; i++) {
             // load view
@@ -97,6 +102,8 @@ public class RandomDataLoader extends DataLoader{
         randomLoaderOption.set(option);
         return this;
     }
+
+
 
     public static class RandomLoaderOption{
         private int viewCount;

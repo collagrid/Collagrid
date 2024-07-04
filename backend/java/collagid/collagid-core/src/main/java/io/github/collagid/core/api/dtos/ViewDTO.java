@@ -1,5 +1,9 @@
 package io.github.collagid.core.api.dtos;
 
+import io.github.collagid.core.api.chunk.ChunkCreateEvent;
+import io.github.collagid.core.api.event.CollaGridEventPublisher;
+import io.github.collagid.core.api.snapshot.event.SnapshotCreateEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +59,7 @@ public class ViewDTO {
 
     public void addChunk(ChunkDTO chunkDTO) {
         this.chunks.add(chunkDTO);
+        CollaGridEventPublisher.publishEvent(new ChunkCreateEvent());
     }
 }
 

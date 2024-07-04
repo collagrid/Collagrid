@@ -2,6 +2,7 @@ package io.github.collagid.core.api.dtos;
 
 
 import io.github.collagid.core.api.event.CollaGridEventPublisher;
+import io.github.collagid.core.api.record.event.RecordCreatedEvent;
 import io.github.collagid.core.api.record.event.RecordQueryEvent;
 import io.github.collagid.core.api.record.event.async.RecordQueryEventAsync;
 
@@ -36,6 +37,7 @@ public class ChunkDTO {
         if (record == null) {
             return;
         }
+        CollaGridEventPublisher.publishEvent(new RecordCreatedEvent(null, record));
         if (triggerReadEvent) {
             RecordQueryEventAsync recordQueryEvent = new RecordQueryEventAsync(record.doCopy());
             CollaGridEventPublisher.publishEventAsync(recordQueryEvent);

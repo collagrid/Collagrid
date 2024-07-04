@@ -1,5 +1,8 @@
 package io.github.collagid.core.api.dtos;
 
+import io.github.collagid.core.api.event.CollaGridEventPublisher;
+import io.github.collagid.core.api.record.event.RecordUpdatedEvent;
+import io.github.collagid.core.api.snapshot.event.SnapshotCreateEvent;
 import io.github.collagid.core.api.utils.CopyOne;
 
 import java.util.ArrayList;
@@ -22,6 +25,8 @@ public class RecordDTO implements CopyOne<RecordDTO> {
 
     public void applyFieldData(String id, FieldDataDTO fieldDataDTO) {
         this.data.computeIfAbsent(id, k -> new ArrayList<>()).add(fieldDataDTO);
+
+        CollaGridEventPublisher.publishEvent(new RecordUpdatedEvent(this));
     }
 
     public String getId() {

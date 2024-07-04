@@ -13,7 +13,9 @@ public class RecordCreatedEvent implements CollaGridEvent, Asyncable {
 
     public RecordCreatedEvent(SnapshotDTO context, RecordDTO newRecord) {
         this.async = new RecordCreatedEventAsync(newRecord);
-        this.async.setDstId(context.getDstId());
+        if (context != null) {
+            this.async.setDstId(context.getDstId());
+        }
         this.context = context;
     }
 

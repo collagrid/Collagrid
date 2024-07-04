@@ -1,9 +1,13 @@
 package io.github.collagid.core.api.dtos;
 
 import io.github.collagid.core.api.event.CollaGridEventPublisher;
+import io.github.collagid.core.api.field.FieldCreateEvent;
 import io.github.collagid.core.api.field.FieldDTO;
 import io.github.collagid.core.api.record.event.RecordCreatedEvent;
 import io.github.collagid.core.api.record.event.RecordQueryEvent;
+import io.github.collagid.core.api.snapshot.event.SnapshotCreateEvent;
+import io.github.collagid.core.api.snapshot.event.SnapshotUpdateEvent;
+import io.github.collagid.core.api.view.ViewCreateEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,12 +38,7 @@ public class SnapshotDTO{
                 recordMap.put(record.getId(), record);
             }
         }
-    }
-
-    private void addRecords(List<RecordDTO> recordDTOS) {
-        for (RecordDTO recordDTO : recordDTOS) {
-            this.addRecord(recordDTO);
-        }
+        CollaGridEventPublisher.publishEvent(new ViewCreateEvent());
     }
 
     public String getDstId() {
@@ -48,10 +47,12 @@ public class SnapshotDTO{
 
     public void addField(FieldDTO fieldDTO) {
         this.fieldMap.put(fieldDTO.getId(), fieldDTO);
+        CollaGridEventPublisher.publishEvent(new FieldCreateEvent());
     }
 
     public void setDstId(String dstId) {
         this.dstId = dstId;
+        CollaGridEventPublisher.publishEvent(new SnapshotCreateEvent());
     }
 
     public RecordDTO addRecord(RecordDTO recordDTO){
