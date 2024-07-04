@@ -58,6 +58,7 @@ public class RandomDataLoaderTest {
                         )
                 );
         assertEquals(collect.get(CollaGridEventType.SNAPSHOT_CREATE.toString()), 1L);
+        assertNull(collect.get(CollaGridEventType.SNAPSHOT_UPDATE.toString()));
         assertEquals(collect.get(CollaGridEventType.VIEW_CREATED.toString()), randomLoaderOption.getViewCount());
         assertEquals(collect.get(CollaGridEventType.CHUNK_CREATE.toString()), randomLoaderOption.getChunkCount());
         assertEquals(collect.get(CollaGridEventType.FIELD_CREATED.toString()), randomLoaderOption.getFieldCount());

@@ -6,7 +6,6 @@ import io.github.collagid.core.api.field.FieldDTO;
 import io.github.collagid.core.api.record.event.RecordCreatedEvent;
 import io.github.collagid.core.api.record.event.RecordQueryEvent;
 import io.github.collagid.core.api.snapshot.event.SnapshotCreateEvent;
-import io.github.collagid.core.api.snapshot.event.SnapshotUpdateEvent;
 import io.github.collagid.core.api.view.ViewCreateEvent;
 
 import java.util.ArrayList;

@@ -34,6 +34,7 @@ public class RandomDataLoader extends DataLoader{
                 record.applyFieldData(fieldDTO.getId(), fieldDataDTO);
             }
         });
+        randomLoaderOption.remove();
         return option.context;
     }
 
