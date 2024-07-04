@@ -31,12 +31,17 @@ public class CollaGridEventPublisherTest {
 
         CollaGridEventListener<RecordCreatedEvent> customListener = new RecordCreated() {
             @Override
+            public CollaGridEventType getType() {
+                return CollaGridEventType.CREATE_RECORD;
+            }
+
+            @Override
             public void onRecordCreated(RecordCreatedEvent event) {
                 eventHandled.set(true);
             }
         };
 
-        CollaGridEventPublisher.addListener(CollaGridEventType.CREATE_RECORD, customListener);
+        CollaGridEventPublisher.register(customListener);
         CollaGridEventPublisher.publishEvent(event);
 
         assertTrue(eventHandled.get(), "The event should have been handled by the listener");
@@ -48,6 +53,11 @@ public class CollaGridEventPublisherTest {
         AtomicBoolean eventHandled = new AtomicBoolean(false);
 
         CollaGridEventListener<RecordCreatedEventAsync> customListener = new RecordCreated.Async() {
+            @Override
+            public CollaGridEventType getType() {
+                return CollaGridEventType.CREATE_RECORD_ASYNC;
+            }
+
             @Override
             public void onRecordCreated(RecordCreatedEventAsync event) {
                 String origin = event.getDstId();
@@ -65,7 +75,7 @@ public class CollaGridEventPublisherTest {
             }
         };
 
-        CollaGridEventPublisher.addListener(CollaGridEventType.CREATE_RECORD_ASYNC, customListener);
+        CollaGridEventPublisher.addListener(customListener);
         RecordCreatedEventAsync eventAsync = event.async();
         CollaGridEventPublisher.publishEventAsync(eventAsync);
         Thread.sleep(200);

@@ -22,13 +22,23 @@ public class SnapshotDTOTest {
         AtomicInteger recordLoadedCounter = new AtomicInteger();
         CollaGridEventListener<RecordCreatedEvent> customListener = new RecordCreated() {
             @Override
+            public CollaGridEventType getType() {
+                return CollaGridEventType.CREATE_RECORD;
+            }
+
+            @Override
             public void onRecordCreated(RecordCreatedEvent event) {
                 recordCounter.incrementAndGet();
             }
         };
 
-        CollaGridEventPublisher.addListener(CollaGridEventType.CREATE_RECORD, customListener);
-        CollaGridEventPublisher.addListener(CollaGridEventType.QUERY_RECORD, new RecordQueried(){
+        CollaGridEventPublisher.register(customListener);
+        CollaGridEventPublisher.register(new RecordQueried(){
+            @Override
+            public CollaGridEventType getType() {
+                return CollaGridEventType.QUERY_RECORD;
+            }
+
             @Override
             public void onRecordQueried(RecordQueryEvent option) {
                 recordLoadedCounter.incrementAndGet();
