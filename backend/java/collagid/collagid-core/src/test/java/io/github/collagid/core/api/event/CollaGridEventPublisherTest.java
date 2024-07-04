@@ -75,7 +75,7 @@ public class CollaGridEventPublisherTest {
             }
         };
 
-        CollaGridEventPublisher.addListener(customListener);
+        CollaGridEventPublisher.register(customListener);
         RecordCreatedEventAsync eventAsync = event.async();
         CollaGridEventPublisher.publishEventAsync(eventAsync);
         Thread.sleep(200);

@@ -13,6 +13,9 @@ public class CollaGridEventPublisher {
     private static final ExecutorService executorService = Executors.newCachedThreadPool();
 
     public static <T extends CollaGridEvent> void register(CollaGridEventListener<T> listener) {
+        if (listener == null || listener.getType() == null) {
+            return;
+        }
         listenersMap.computeIfAbsent(listener.getType(), k -> new ArrayList<>()).add(listener);
     }
 

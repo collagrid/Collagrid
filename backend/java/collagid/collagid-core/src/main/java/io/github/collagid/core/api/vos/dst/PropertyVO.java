@@ -1,4 +1,4 @@
-package io.github.collagid.core.api.vos;
+package io.github.collagid.core.api.vos.dst;
 
 public class PropertyVO {
     private String defaultValue;

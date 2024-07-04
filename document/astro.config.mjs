@@ -15,7 +15,10 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Guides',
-					items: [{ label: 'Example Guide', link: '/guides/example/' }],
+					items: [
+						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'Ot', link: '/ot/ot/' }
+					],
 				},
 				// Add the generated sidebar group to the sidebar.
 				typeDocSidebarGroup,

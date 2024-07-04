@@ -1,7 +1,4 @@
-package io.github.collagid.core.api.vos;
-
-import java.util.List;
-import java.util.Map;
+package io.github.collagid.core.api.vos.dst;
 
 public class FieldVO {
     private String id;

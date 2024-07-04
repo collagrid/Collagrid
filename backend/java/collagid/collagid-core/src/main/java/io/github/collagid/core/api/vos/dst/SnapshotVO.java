@@ -1,4 +1,4 @@
-package io.github.collagid.core.api.vos;
+package io.github.collagid.core.api.vos.dst;
 
 import java.util.List;
 import java.util.Map;
