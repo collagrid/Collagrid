@@ -34,4 +34,4 @@ console.log(result); // 5
 
 ## Defined in
 
-[index.ts:72](https://github.com/collagrid/colla-grid/blob/9f2c2f049f325de2a8d7b60e295da32f02dce673/packages/core/src/index.ts#L72)
+[index.ts:72](https://github.com/collagrid/colla-grid/blob/1f0e25b15cd0fcb6fe754cc1de5a341841a97a6c/packages/core/src/index.ts#L72)

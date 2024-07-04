@@ -75,3 +75,13 @@ Writing a good guide requires thinking about what your users are trying to do.
 }
 
 ```
+
+1. 需要有一个引擎，不同引擎对应的底层数据结构不同。引擎有两个实现
+    - SingleGrid 的实现，一个表格存一个chunk，所有的数据存在一起
+    - dispatch 的实现，一个表格存多个chunk，数据分散存储，不同的数据策略不一样
+2. 引擎可以采用构造者模式，不同的数据存储到不同的地方，比如表头存文件，行数据存到mysql
+3. 引擎会提供一个 register 接口，可以注入各种表格事件，比如 OnRecordCreated
+4. 引擎会对外暴露一个 findSnapshot 接口获取数据
+5. 引擎会对外暴露一个 change 接口接收 OP 事件，内部进行处理，并将处理后的 OP 事件广播出去
+6. dispatch 实现的引擎内部会解析 OP 成各种事件。比如创建行，删除行，更新行，更新列，删除列等，调用引擎内部的事件处理函数处理。
+7. SingleGrid 的事件直接 apply OP 即可。如果引擎有注册事件，会解析 OP 进行处理。
