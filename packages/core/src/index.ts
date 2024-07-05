@@ -3,10 +3,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 // Row Data Interface
 interface IRow {
-    make: string;
-    model: string;
-    price: number;
-    electric: boolean;
+    recordId: string;
 }
 
 interface CollaGridOption{
@@ -20,20 +17,36 @@ class CollaGrid {
 
     constructor(option: CollaGridOption) {
         console.log('option is', option);
+        (window as any).d = new Map([
+            ["Tesla", {make: "Tesla", model: "Model Y", price: 64950, electric: true}],
+            ["Ford", {make: "Ford", model: "F-Series", price: 33850, electric: false}],
+            ["Toyota", {make: "Toyota", model: "Corolla", price: 29600, electric: false}],
+            ["Mercedes", {make: "Mercedes", model: "EQA", price: 48890, electric: true}],
+            ["Fiat", {make: "Fiat", model: "500", price: 15774, electric: false}],
+            ["Nissan", {make: "Nissan", model: "Juke", price: 20675, electric: false}]
+        ]);
         this.gridOptions = {
             rowData: [
-                {make: "Tesla", model: "Model Y", price: 64950, electric: true},
-                {make: "Ford", model: "F-Series", price: 33850, electric: false},
-                {make: "Toyota", model: "Corolla", price: 29600, electric: false},
-                {make: "Mercedes", model: "EQA", price: 48890, electric: true},
-                {make: "Fiat", model: "500", price: 15774, electric: false},
-                {make: "Nissan", model: "Juke", price: 20675, electric: false},
+                {recordId: "Tesla",},
+                {recordId: "Ford",},
+                {recordId: "Toyota",},
+                {recordId: "Mercedes",},
+                {recordId: "Fiat",},
+                {recordId: "Nissan",},
             ],
             columnDefs: [
-                {field: "make"},
-                {field: "model"},
-                {field: "price"},
-                {field: "electric"},
+                {field: "make", valueGetter: (p) => {
+                        return (window as any).d.get(p.data.recordId).make;
+                    }},
+                {field: "model", valueGetter: (p) => {
+                        return (window as any).d.get(p.data.recordId).model;
+                    }},
+                {field: "price", valueGetter: (p) => {
+                        return (window as any).d.get(p.data.recordId).price;
+                    }},
+                {field: "electric", valueGetter: (p) => {
+                        return (window as any).d.get(p.data.recordId).electric;
+                    }},
             ],
             defaultColDef: {
                 flex: 1,
@@ -43,6 +56,7 @@ class CollaGrid {
 
     // Initialize the grid
     mount(domId: string) {
+        console.log('xx', Array.from((window as any).d.keys()));
         // Register modules
         ModuleRegistry.registerModules([ClientSideRowModelModule]);
         console.log('xxmsms');

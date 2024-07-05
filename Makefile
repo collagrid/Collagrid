@@ -20,6 +20,9 @@ docs:
 lint:
 	cd packages/core && pnpm run lint
 
+dev:
+	cd packages/core && pnpm run dev
+
 commit:
 	git add . && pnpm run commit
 
