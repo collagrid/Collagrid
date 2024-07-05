@@ -21,7 +21,7 @@ title: "CollaGrid"
 
 #### Defined in
 
-[index.ts:21](https://github.com/collagrid/colla-grid/blob/1f0e25b15cd0fcb6fe754cc1de5a341841a97a6c/packages/core/src/index.ts#L21)
+[index.ts:20](https://github.com/collagrid/colla-grid/blob/3fc731fcf42b316d027d90ce80569fd823117ab5/packages/core/src/index.ts#L20)
 
 ## Methods
 
@@ -39,4 +39,24 @@ title: "CollaGrid"
 
 #### Defined in
 
-[index.ts:45](https://github.com/collagrid/colla-grid/blob/1f0e25b15cd0fcb6fe754cc1de5a341841a97a6c/packages/core/src/index.ts#L45)
+[index.ts:94](https://github.com/collagrid/colla-grid/blob/3fc731fcf42b316d027d90ce80569fd823117ab5/packages/core/src/index.ts#L94)
+
+***
+
+### updateData()
+
+> **updateData**(`recordId`, `newData`): `void`
+
+#### Parameters
+
+• **recordId**: `string`
+
+• **newData**: `Partial`\<`IRow`\>
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[index.ts:82](https://github.com/collagrid/colla-grid/blob/3fc731fcf42b316d027d90ce80569fd823117ab5/packages/core/src/index.ts#L82)

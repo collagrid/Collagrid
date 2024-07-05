@@ -17,4 +17,4 @@ title: "createCollaGrid"
 
 ## Defined in
 
-[index.ts:57](https://github.com/collagrid/colla-grid/blob/1f0e25b15cd0fcb6fe754cc1de5a341841a97a6c/packages/core/src/index.ts#L57)
+[index.ts:117](https://github.com/collagrid/colla-grid/blob/3fc731fcf42b316d027d90ce80569fd823117ab5/packages/core/src/index.ts#L117)
