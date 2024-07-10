@@ -3,6 +3,18 @@ import dts from 'vite-plugin-dts';
 import * as path from 'path';
 
 export default defineConfig({
+    server:{
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8081/',
+                changeOrigin: true,
+                secure: false,
+                configure: (proxy, options) => {
+
+                }
+            },
+        }
+    },
     plugins: [
         dts({
             outDir: './dist/types',
