@@ -8,7 +8,6 @@ import java.util.Set;
 public class BTr {
     public static void main(String[] args) {
         BTree<String, String> st = new BTree<String, String>();
-        st.
     }
 
     public static class RecordSet implements Comparable{
