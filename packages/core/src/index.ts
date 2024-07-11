@@ -26,7 +26,6 @@ class CollaGrid {
             columnDefs: [],
             getRowId: (data) => data.data.recordId as string,
             defaultColDef: {
-                flex: 1
             }
         };
     }
@@ -34,6 +33,10 @@ class CollaGrid {
     private getValue(params: any) {
         const fieldId = params.colDef.field;
         const recordId = params.data.recordId;
+        const da = this.recordMap[recordId].data;
+        if (!da || !da[fieldId]) {
+            return '';
+        }
         return this.recordMap[recordId].data[fieldId][0].text;
     }
 
@@ -51,7 +54,7 @@ class CollaGrid {
 
     // Initialize the grid
     mount(domId: string) {
-        getData('dst1dnr6blpf7gubsr').then((data) => {
+        getData('dstj2x0ekis73uygg1').then((data) => {
             console.log('zzq see', data);
             const columns = data.data.meta.views[0].columns;
             const fieldMap = data.data.meta.fieldMap;
@@ -65,14 +68,15 @@ class CollaGrid {
                 valueGetter: (params: any) => params.node.rowIndex + 1
             }];
             this.recordMap = data.data.recordMap;
-            columns.forEach((column: any) => {
+            for (let i = 0; i < columns.length; i++) {
+                const column  = columns[i];
                 headers.push({
                     field: column.fieldId,
                     minWidth: 160,
                     headerName: fieldMap[column.fieldId].name,
                     valueGetter: this.getValue.bind(this)
                 });
-            });
+            }
             const rows = data.data.meta.views[0].rows;
             this.gridOptions.rowData = rows;
             this.gridOptions.columnDefs = headers;
