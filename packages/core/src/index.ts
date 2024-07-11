@@ -1,7 +1,7 @@
 import { ClientSideRowModelModule, createGrid, GridApi, GridOptions, ModuleRegistry } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import { getData } from "./api";
+import {doOp, getData} from "./api";
 
 interface IRow {
     recordId?: string;
@@ -14,6 +14,7 @@ class CollaGrid {
     private gridApi: GridApi | undefined;
     private gridOptions: GridOptions<IRow>;
     private recordMap: any;
+    private revision = 0;
 
     constructor(option: CollaGridOption) {
         console.log('option is', option);
@@ -21,7 +22,7 @@ class CollaGrid {
             rowData: [],
             onRowClicked: (params: any) => {
                 const val = this.recordMap[params.data.recordId];
-                console.log(`create record id is ${val.createV} and v is: ${val.v} ${val.id}`);
+                console.log(`create record id is ${val.createV} and v is: ${val.v} ${val.id}`, val);
             },
             columnDefs: [],
             getRowId: (data) => {
@@ -59,7 +60,7 @@ class CollaGrid {
     // Initialize the grid
     mount(domId: string) {
         getData('dstj2x0ekis73uygg1').then((data) => {
-            console.log('zzq see', data);
+            this.revision = data.data.v;
             const columns = data.data.meta.views[0].columns;
             const fieldMap = data.data.meta.fieldMap;
             const headers: any[] = [{
@@ -67,12 +68,12 @@ class CollaGrid {
                 field: 'rowIndex',
                 minWidth: 60,
                 width: 60,
+                editable: false,
                 sortable: false,
                 filter: false,
                 pinned: "left",
                 resizable: false,
                 valueGetter: (params: any) => {
-                    console.log('pa', params);
                     return params.node.rowIndex + 1;
                 }
             }];
@@ -82,6 +83,29 @@ class CollaGrid {
                 const he = {
                     field: column.fieldId,
                     minWidth: 160,
+                    valueSetter: (params:any) => {
+                        const fieldId = params.colDef.field;
+                        const recordId = params.data.recordId;
+                        const oldData = this.recordMap[recordId].data;
+                        const recordUid = this.recordMap[recordId].uid;
+                        const op = this.getOperation('dstj2x0ekis73uygg1', recordUid, recordId, fieldId, params.newValue, this.revision);
+                        if (oldData) {
+                            const od = oldData[fieldId];
+                            if (od) {
+                                op.changesets[0].operations[0].actions[0].od = od;
+                            }
+                            oldData[fieldId] = op.changesets[0].operations[0].actions[0].oi;
+                        }
+                        console.log('zzq see op', op);
+                        doOp(op).then(r =>{
+                            this.revision++;
+                            const sdata = r.data.changesets[0].operations[0].actions[0].oi;
+                            console.log('zzq see ddd', sdata);
+                            oldData[fieldId] = sdata;
+                            this.refreshSpecificCell(recordId, fieldId);
+                        })
+                        return true;
+                    },
                     headerName: fieldMap[column.fieldId].name,
                     valueGetter: this.getValue.bind(this)
                 };
@@ -100,6 +124,47 @@ class CollaGrid {
             );
         });
         ModuleRegistry.registerModules([ClientSideRowModelModule]);
+    }
+
+    private getOperation(dstId: String, uid: number, recordId: String, fieldId: String, text: String, rv: number) {
+        return JSON.parse(`
+        {
+    "type": "CLIENT_ROOM_CHANGE",
+    "roomId": "${dstId}",
+    "changesets": [
+        {
+            "messageId": "MN1iXJGzRyJiOa4dzOyQ",
+            "baseRevision": ${rv},
+            "resourceId": "${dstId}",
+            "resourceType": 0,
+            "operations": [
+                {
+                    "cmd": "SetRecords",
+                    "actions": [
+                        {
+                            "n": "OI",
+                            "rid":"${uid}",
+                            "branchId":"0.01",
+                            "p": [
+                                "recordMap",
+                                "${recordId}",
+                                "data",
+                                "${fieldId}"
+                            ],
+                            "oi": [
+                                {
+                                    "type": 1,
+                                    "text": "${text}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+        `)
     }
 }
 
