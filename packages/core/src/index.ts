@@ -24,8 +24,12 @@ class CollaGrid {
                 console.log(`create record id is ${val.createV} and v is: ${val.v} ${val.id}`);
             },
             columnDefs: [],
-            getRowId: (data) => data.data.recordId as string,
+            getRowId: (data) => {
+                return data.data.recordId as string;
+            },
             defaultColDef: {
+                flex: 1,
+                editable: true
             }
         };
     }
@@ -62,20 +66,29 @@ class CollaGrid {
                 headerName: '#',
                 field: 'rowIndex',
                 minWidth: 60,
+                width: 60,
                 sortable: false,
                 filter: false,
+                pinned: "left",
                 resizable: false,
-                valueGetter: (params: any) => params.node.rowIndex + 1
+                valueGetter: (params: any) => {
+                    console.log('pa', params);
+                    return params.node.rowIndex + 1;
+                }
             }];
             this.recordMap = data.data.recordMap;
             for (let i = 0; i < columns.length; i++) {
                 const column  = columns[i];
-                headers.push({
+                const he = {
                     field: column.fieldId,
                     minWidth: 160,
                     headerName: fieldMap[column.fieldId].name,
                     valueGetter: this.getValue.bind(this)
-                });
+                };
+                if (i == 0) {
+                    he.pinned = 'left';
+                }
+                headers.push(he);
             }
             const rows = data.data.meta.views[0].rows;
             this.gridOptions.rowData = rows;
