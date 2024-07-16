@@ -59,7 +59,7 @@ class CollaGrid {
 
     // Initialize the grid
     mount(domId: string) {
-        getData('dstj2x0ekis73uygg1').then((data) => {
+        getData('dstjttwkcgusy3wbzl').then((data) => {
             this.revision = data.data.v;
             const columns = data.data.meta.views[0].columns;
             const fieldMap = data.data.meta.fieldMap;
@@ -82,13 +82,14 @@ class CollaGrid {
                 const column  = columns[i];
                 const he = {
                     field: column.fieldId,
+                    sortable: false,
                     minWidth: 160,
                     valueSetter: (params:any) => {
                         const fieldId = params.colDef.field;
                         const recordId = params.data.recordId;
                         const oldData = this.recordMap[recordId].data;
                         const recordUid = this.recordMap[recordId].uid;
-                        const op = this.getOperation('dstj2x0ekis73uygg1', recordUid, recordId, fieldId, params.newValue, this.revision);
+                        const op = this.getOperation('dstjttwkcgusy3wbzl', recordUid, recordId, fieldId, params.newValue, this.revision);
                         if (oldData) {
                             const od = oldData[fieldId];
                             if (od) {
