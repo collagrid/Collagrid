@@ -23,7 +23,7 @@ export const getData = async (dstId: string) => {
 
     try {
         const response = await fetch(
-            `api/v1/branchDst/datasheets/${dstId}/dataDrink?branchId=bratp3Vym6fBa`
+            `api/v1/branchDst/datasheets/${dstId}/dataDrink?branchId=0.01`
             , requestOptions as RequestInit);
         if (!response.ok) {
             throw new Error('Network response was not ok.');
