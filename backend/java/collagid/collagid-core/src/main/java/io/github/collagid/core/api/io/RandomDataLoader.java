@@ -20,20 +20,6 @@ public class RandomDataLoader extends DataLoader{
         option.context = new SnapshotDTO();
         option.context.setDstId(dstId);
         loadFieldMap(dstId);
-        for (int i = 0; i < option.viewCount; i++) {
-            // load view
-            String viewId = IdUtils.getViewId();
-            ViewDTO viewDTO = loadView(dstId, viewId);
-            option.context.addView(viewDTO);
-        }
-        option.context.getRecordMap().forEach((fieldId, record) -> {
-            // set column
-            for (FieldDTO fieldDTO : option.fieldList) {
-                FieldDataDTO fieldDataDTO = new FieldDataDTO(
-                        IdUtils.generateId("", 10), new DataDTO(), 0);
-                record.applyFieldData(fieldDTO.getId(), fieldDataDTO);
-            }
-        });
         randomLoaderOption.remove();
         return option.context;
     }
@@ -47,39 +33,10 @@ public class RandomDataLoader extends DataLoader{
             fieldDTO.setName("field " + i);
             fieldDTO.setType(1);
             fieldDTO.setId(fieldId);
-            fieldDTO.setProperty(new PropertyDTO());
             option.context.addField(fieldDTO);
             option.addField(fieldDTO);
         }
         return null;
-    }
-
-    @Override
-    public ViewDTO loadView(String dstId, String viewId) {
-        ViewDTO viewDTO = new ViewDTO();
-        viewDTO.setViewId(viewId);
-        RandomLoaderOption option = randomLoaderOption.get();
-        // created chunk
-        for (int i = 0; i < option.chunkCount; i++) {
-            ChunkDTO chunkDTO = loadChunk(dstId, viewId, viewId);
-            viewDTO.addChunk(chunkDTO);
-            viewDTO.setColumns(
-                    option.fieldList.stream()
-                            .map(f -> new ColumnDTO(f.getId(), false))
-                            .collect(Collectors.toList())
-            );
-        }
-        return viewDTO;
-    }
-
-    @Override
-    public ChunkDTO loadChunk(String dstId, String viewId, String chunkId) {
-        ChunkDTO chunkDTO = new ChunkDTO();
-        chunkDTO.setChunkId(chunkId);
-        for (RecordDTO record : loadRecords(dstId, viewId, chunkId)) {
-            chunkDTO.addRecordIndex(record, true);
-        }
-        return chunkDTO;
     }
 
     @Override
@@ -90,10 +47,6 @@ public class RandomDataLoader extends DataLoader{
         for (int j = 0; j < option.chunkSize; j++) {
             RecordDTO record = new RecordDTO();
             record.setId(IdUtils.getRecordId());
-            record.setV(0);
-            record.setRh(Collections.singletonList(0));
-            record.setCa(option.now);
-            record.setUa(option.now);
             records.add(record);
         }
         return records;
