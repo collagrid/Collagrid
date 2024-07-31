@@ -108,3 +108,11 @@ Writing a good guide requires thinking about what your users are trying to do.
     ├── 3.1.1 版本
     └── 3.1.2 版本
 ```
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```

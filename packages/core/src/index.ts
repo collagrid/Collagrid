@@ -111,7 +111,7 @@ class CollaGrid {
                     valueGetter: this.getValue.bind(this)
                 };
                 if (i == 0) {
-                    he.pinned = 'left';
+                    (he as any).pinned = 'left';
                 }
                 headers.push(he);
             }

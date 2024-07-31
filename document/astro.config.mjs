@@ -1,6 +1,7 @@
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
 import starlightTypeDoc, { typeDocSidebarGroup } from 'starlight-typedoc'
+import remarkMermaid from 'remark-mermaidjs'
 
 export default defineConfig({
 	integrations: [
@@ -26,4 +27,9 @@ export default defineConfig({
 			title: 'My Docs',
 		}),
 	],
+	markdown: {
+		remarkPlugins: [
+			remarkMermaid,
+		],
+	},
 })
